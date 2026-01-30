@@ -38,7 +38,7 @@
         .highlight { color: var(--primary); }
         p { font-size: 1.25rem; color: #aaa; line-height: 1.6; margin: 30px 0; }
 
-        /* 图片容器 - 桌面端 */
+        /* 桌面端图片布局 */
         .image-box {
             flex: 1.2; 
             height: 600px;
@@ -75,41 +75,41 @@
         }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(157,133,208,0.5); }
 
-        /* --- 手机端响应式修正 --- */
+        /* --- 手机端适配 --- */
         @media (max-width: 900px) {
             .container { 
                 flex-direction: column; 
                 text-align: center; 
-                padding: 60px 20px; /* 增加上下间距 */
+                padding: 60px 20px; 
                 min-height: auto;
             }
             
-            .content { order: 1; margin-bottom: 40px; } /* 文案在上 */
-            
+            .content { order: 1; margin-bottom: 40px; }
             h1 { font-size: 2.8rem; }
             p { font-size: 1.1rem; margin: 20px 0; }
 
             .image-box { 
-                order: 2; /* 图片在下 */
+                order: 2; 
                 width: 100%; 
-                height: 400px; /* 手机端容器高度调小 */
-                margin-top: 0;
+                height: 450px; 
             }
 
             .hero-img { 
-                width: 85%; /* 手机端让角色显得大一点 */
-                max-width: 340px; 
-                position: relative; /* 改回相对定位，居中对齐 */
-                right: auto;
-                bottom: auto;
-                margin: 0 auto;
-                display: block;
+                width: 80%; 
+                max-width: 320px; 
+                position: absolute; /* 使用绝对定位以便精确控制平移 */
+                left: 50%;
+                bottom: 20px;
+                /* 关键改动：女孩往左平移一点 (原本居中是 -50%，现在改为 -70% 往左偏) */
+                transform: translateX(-70%); 
             }
 
             .engine-bg { 
-                width: 140px; /* 缩小小猫 */
-                top: -20px; /* 悬浮在角色头部的右上方 */
-                right: 10%; /* 相对屏幕边缘的位置 */
+                width: 160px; 
+                top: 20px;
+                right: 50%;
+                /* 关键改动：黑猫往右平移一点 (原本居中是 50%，现在利用 transform 往右推) */
+                transform: translateX(80%); 
                 z-index: 3;
             }
         }
