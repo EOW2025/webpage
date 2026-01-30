@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muzya 乐芽 | 开启 AI 音乐创作 RPG</title>
+    <style>
+        :root {
+            --primary: #FFB6C1;
+            /* 乐芽粉 */
+            --secondary: #9D85D0;
+            /* 梦幻紫 */
+            --bg: #0d0d12;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: white;
+            font-family: 'PingFang SC', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(157, 133, 208, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin: 30px 0;
+        }
+
+        /* 图片容器 */
+        .image-box {
+            flex: 1.2;
+            height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 主角色图 (粉发女孩) */
+        .hero-img {
+            width: 100%;
+            max-width: 480px;
+            z-index: 2;
+            position: absolute;
+            bottom: 40px;
+            right: 80px;
+            /* 往左移了一点，避开黑猫 */
+            filter: drop-shadow(0 0 30px rgba(157, 133, 208, 0.2));
+        }
+
+        /* AI Engine (黑猫指挥家) */
+        .engine-bg {
+            width: 200px;
+            opacity: 0.9;
+            z-index: 3;
+            position: absolute;
+            top: 10px;
+            /* 往上移动 */
+            right: -20px;
+            /* 往右移动，超出一点容器边界也没关系 */
+        }
+
+        .btn {
+            padding: 18px 48px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            color: white;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(157, 133, 208, 0.5);
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 80px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .image-box {
+                width: 100%;
+                height: 500px;
+                margin-top: 20px;
+            }
+
+            .hero-img {
+                max-width: 320px;
+                right: 50%;
+                transform: translateX(50%);
+                bottom: 20px;
+            }
+
+            .engine-bg {
+                width: 140px;
+                top: 0;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glow"></div>
+
+    <div class="container">
+        <div class="content">
+            <div class="badge">Next-Gen AI Music RPG</div>
+            <h1>MUZYA<br><span class="highlight">乐芽：作曲物语</span></h1>
+            <p>
+                让每一次成长，都谱写成独一无二的音乐资产。<br>
+                结合传统养成乐趣与 AIGC 尖端技术，<br>
+                在《乐芽》中，你不仅是玩家，更是伟大的作曲家。
+            </p>
+            <a href="https://play.muzya.ai" class="btn">即将开启预约</a>
+        </div>
+
+        <div class="image-box">
+            <img src="hero-character.png" alt="Muzya NPC" class="hero-img" onerror="this.style.display='none';">
+            <img src="ai-engine.png" alt="AI Engine" class="engine-bg">
+        </div>
+    </div>
+
+    <div style="position: absolute; bottom: 30px; width: 100%; text-align: center; color: #444; font-size: 0.8rem;">
+        © 2026 X-REALM TECH 弦界科技 | Powered by Suno AI
+    </div>
+</body>
+
+</html>
