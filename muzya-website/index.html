@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muzya 乐芽 | 开启 AI 音乐创作 RPG</title>
     <style>
+        /* ... 上半部分保持不变 ... */
         :root {
             --primary: #FFB6C1;
             --secondary: #9D85D0;
@@ -38,33 +39,20 @@
         .highlight { color: var(--primary); }
         p { font-size: 1.25rem; color: #aaa; line-height: 1.6; margin: 30px 0; }
 
-        /* 桌面端布局保持不变 */
         .image-box {
-            flex: 1.2; 
-            height: 600px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            flex: 1.2; height: 600px; position: relative;
+            display: flex; align-items: center; justify-content: center;
         }
 
         .hero-img {
-            width: 100%;
-            max-width: 480px;
-            z-index: 2;
-            position: absolute;
-            bottom: 40px;
-            right: 80px;
+            width: 100%; max-width: 480px; z-index: 2; position: absolute;
+            bottom: 40px; right: 80px;
             filter: drop-shadow(0 0 30px rgba(157,133,208,0.2));
         }
 
         .engine-bg {
-            width: 200px; 
-            opacity: 0.9;
-            z-index: 3;
-            position: absolute;
-            top: 10px;
-            right: -20px;
+            width: 200px; opacity: 0.9; z-index: 3;
+            position: absolute; top: 10px; right: -20px;
         }
 
         .btn {
@@ -75,47 +63,57 @@
         }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(157,133,208,0.5); }
 
-/* --- 手机端 RWD 完美适配 --- */
+
+        /* --- 手机端 全局 RWD 适配 --- */
         @media (max-width: 900px) {
             .container { 
                 flex-direction: column; 
-                padding: 40px 20px; /* 保持适中的边距 */
+                padding: 40px 20px; 
                 justify-content: center;
             }
             
             .content { order: 1; text-align: center; margin-bottom: 20px; }
-            h1 { font-size: 2.5rem; }
             
-            /* 核心改动：
-               1. 宽度设为 100%，占满手机屏幕宽度
-               2. aspect-ratio: 1/0.8; 锁定宽高比，确保图片容器永远按比例缩放
-            */
+            /* * 文字 RWD 核心技巧：clamp(最小, 推荐, 最大)
+             * vw 是视窗宽度单位，1vw = 1% 屏幕宽
+             */
+
+            h1 { 
+                /* 最小 2.5rem，理想是屏幕宽的 10%，最大不超过 3.5rem */
+                font-size: clamp(2.5rem, 10vw, 3.5rem); 
+                line-height: 1.2;
+            }
+
+            p { 
+                /* 最小 16px (1rem)，理想是 4.5% 屏宽，最大 1.25rem */
+                font-size: clamp(1rem, 4.5vw, 1.25rem); 
+                margin: 20px 0;
+            }
+
+            .badge {
+                /* 标签也稍微缩放一点 */
+                font-size: clamp(0.75rem, 3vw, 0.9rem);
+            }
+
+            .btn {
+                /* 按钮文字和内边距也做流体缩放 */
+                font-size: clamp(1rem, 4vw, 1.1rem);
+                padding: clamp(12px, 3vw, 18px) clamp(30px, 8vw, 48px);
+                width: 70%; /* 让按钮在手机上稍微宽一点，方便点击 */
+            }
+
+            /* --- 图片部分 (保持之前的完美适配) --- */
             .image-box { 
-                order: 2; 
-                width: 100%;
-                max-width: 400px; /* 限制最大宽度，防止在 iPad 上太大 */
-                height: auto;     /* 高度自动，由 aspect-ratio 控制 */
-                aspect-ratio: 1 / 0.85; /* 这是一个略扁的矩形比例，适合展示两人 */
-                margin: 0 auto;   /* 容器居中 */
+                order: 2; width: 100%; max-width: 400px;
+                height: auto; aspect-ratio: 1 / 0.85; margin: 0 auto;
             }
 
-            /* 女孩：宽度占容器的 70%，靠左贴底 */
             .hero-img { 
-                width: 70%; 
-                max-width: none; /* 移除像素限制 */
-                left: 0%;        /* 靠左对齐 */
-                bottom: 0;
-                right: auto;     /* 清除桌面端的属性 */
-                transform: none; /* 清除之前的位移 */
+                width: 70%; max-width: none; left: 0%; bottom: 0; right: auto; transform: none; 
             }
 
-            /* 黑猫：宽度占容器的 35%，靠右贴顶 */
             .engine-bg { 
-                width: 38%; 
-                max-width: none;
-                right: 0%;       /* 靠右对齐 */
-                top: 5%;         /* 稍微留点顶部空隙 */
-                transform: none;
+                width: 38%; max-width: none; right: 0%; top: 5%; transform: none;
             }
         }
     </style>
@@ -128,10 +126,9 @@
             <div class="badge">Next-Gen AI Music RPG</div>
             <h1>MUZYA<br><span class="highlight">乐芽：作曲物语</span></h1>
             <p>
-                让每一次成长都谱写成独一无二的音乐<br>
+                让每一次成长，都谱写成独一无二的音乐资产。<br>
                 结合传统养成乐趣与 AIGC 尖端技术，<br>
-                在《乐芽》中，<br>
-                你不仅是玩家，更是伟大的作曲家。
+                在《乐芽》中，你不仅是玩家，更是伟大的作曲家。
             </p>
             <a href="https://play.muzya.ai" class="btn">即将开启预约</a>
         </div>
@@ -147,6 +144,3 @@
     </div>
 </body>
 </html>
-
-
-
