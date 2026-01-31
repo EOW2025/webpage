@@ -75,40 +75,47 @@
         }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(157,133,208,0.5); }
 
-        /* --- 手机端适配 (图片缩小至 75%) --- */
+/* --- 手机端 RWD 完美适配 --- */
         @media (max-width: 900px) {
             .container { 
                 flex-direction: column; 
-                text-align: center; 
-                padding: 40px 20px; 
-                min-height: auto;
+                padding: 40px 20px; /* 保持适中的边距 */
+                justify-content: center;
             }
             
-            .content { order: 1; margin-bottom: 30px; }
-            h1 { font-size: 2.6rem; }
-            p { font-size: 1rem; margin: 15px 0; }
-
+            .content { order: 1; text-align: center; margin-bottom: 20px; }
+            h1 { font-size: 2.5rem; }
+            
+            /* 核心改动：
+               1. 宽度设为 100%，占满手机屏幕宽度
+               2. aspect-ratio: 1/0.8; 锁定宽高比，确保图片容器永远按比例缩放
+            */
             .image-box { 
                 order: 2; 
-                width: 100%; 
-                height: 380px; /* 缩小容器高度 */
+                width: 100%;
+                max-width: 400px; /* 限制最大宽度，防止在 iPad 上太大 */
+                height: auto;     /* 高度自动，由 aspect-ratio 控制 */
+                aspect-ratio: 1 / 0.85; /* 这是一个略扁的矩形比例，适合展示两人 */
+                margin: 0 auto;   /* 容器居中 */
             }
 
+            /* 女孩：宽度占容器的 70%，靠左贴底 */
             .hero-img { 
-                width: 60%; /* 原始 80% * 0.75 */
-                max-width: 240px; /* 原始 320px * 0.75 */
-                position: absolute;
-                left: 50%;
-                bottom: 10px;
-                transform: translateX(-65%); /* 稍微微调偏移量 */
+                width: 70%; 
+                max-width: none; /* 移除像素限制 */
+                left: 0%;        /* 靠左对齐 */
+                bottom: 0;
+                right: auto;     /* 清除桌面端的属性 */
+                transform: none; /* 清除之前的位移 */
             }
 
+            /* 黑猫：宽度占容器的 35%，靠右贴顶 */
             .engine-bg { 
-                width: 120px; /* 原始 160px * 0.75 */
-                top: 20px;
-                right: 50%;
-                transform: translateX(75%); /* 稍微微调偏移量 */
-                z-index: 3;
+                width: 38%; 
+                max-width: none;
+                right: 0%;       /* 靠右对齐 */
+                top: 5%;         /* 稍微留点顶部空隙 */
+                transform: none;
             }
         }
     </style>
@@ -134,7 +141,7 @@
         </div>
     </div>
 
-    <div style="position: relative; padding-top: 20px; padding-bottom: 30px; width: 100%; text-align: center; color: #444; font-size: 0.8rem; z-index: 10;">
+    <div style="position: relative; padding-top: 20px; padding-bottom: 30px; width: 100%; text-align: center; color: #444; font-size: 0.8rem;">
         © 2026 X-REALM TECH 弦界科技 | Powered by Suno AI
     </div>
 </body>
